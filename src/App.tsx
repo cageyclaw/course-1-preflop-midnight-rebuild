@@ -30,7 +30,7 @@ function App() {
       try {
         const res = await fetch(`/course-md/${current.file}`)
         const text = await res.text()
-        const html = marked.parse(text)
+        const html = (await marked.parse(text)) as string
         if (isMounted) setContentHtml(html)
       } catch (err) {
         if (isMounted)

@@ -1,0 +1,149 @@
+:root {
+  font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial,
+    sans-serif;
+  color: #e6e6e6;
+  background-color: #0f1115;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 280px;
+  background: #151823;
+  border-right: 1px solid #23283a;
+  padding: 24px 18px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.brand-title {
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.brand-sub {
+  font-size: 13px;
+  color: #9aa3b2;
+  margin-top: 4px;
+}
+
+.nav {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nav-item {
+  background: transparent;
+  border: 1px solid transparent;
+  color: #d6d9e0;
+  padding: 10px 12px;
+  text-align: left;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.nav-item:hover {
+  border-color: #2f3550;
+  background: #1c2030;
+}
+
+.nav-item.active {
+  border-color: #4a67ff;
+  background: #212746;
+  color: #ffffff;
+}
+
+.nav-id {
+  font-weight: 700;
+  color: #7aa2ff;
+  min-width: 30px;
+}
+
+.content {
+  flex: 1;
+  padding: 40px 48px;
+  max-width: 900px;
+}
+
+.content-header h1 {
+  margin: 0 0 6px 0;
+  font-size: 28px;
+}
+
+.content-meta {
+  color: #8892a6;
+  font-size: 13px;
+}
+
+.markdown {
+  margin-top: 24px;
+  line-height: 1.6;
+  color: #e6e6e6;
+}
+
+.markdown h2,
+.markdown h3 {
+  margin-top: 24px;
+}
+
+.markdown ul {
+  padding-left: 20px;
+}
+
+.pager {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 32px;
+  gap: 12px;
+}
+
+.pager-btn {
+  background: #2b3148;
+  border: 1px solid #3a425c;
+  color: #e6e6e6;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.pager-btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+@media (max-width: 900px) {
+  .app {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    position: static;
+    border-right: none;
+    border-bottom: 1px solid #23283a;
+  }
+
+  .content {
+    padding: 28px 20px 40px;
+  }
+}

@@ -80,13 +80,21 @@ body {
 
 .content {
   flex: 1;
-  padding: 40px 48px;
-  max-width: 900px;
+  padding: 40px 48px 56px;
+  max-width: 980px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.content-header {
+  border-bottom: 1px solid #23283a;
+  padding-bottom: 16px;
 }
 
 .content-header h1 {
   margin: 0 0 6px 0;
-  font-size: 28px;
+  font-size: 30px;
+  letter-spacing: 0.2px;
 }
 
 .content-meta {
@@ -96,17 +104,119 @@ body {
 
 .markdown {
   margin-top: 24px;
-  line-height: 1.6;
+  line-height: 1.7;
   color: #e6e6e6;
+  font-size: 17px;
 }
 
 .markdown h2,
 .markdown h3 {
-  margin-top: 24px;
+  margin-top: 28px;
+  margin-bottom: 10px;
+  line-height: 1.25;
+}
+
+.markdown h2 {
+  font-size: 26px;
+  border-bottom: 1px solid #252b3f;
+  padding-bottom: 8px;
+}
+
+.markdown h3 {
+  font-size: 20px;
+}
+
+.markdown p {
+  margin: 12px 0;
+  color: #dbe1ec;
 }
 
 .markdown ul {
-  padding-left: 20px;
+  padding-left: 22px;
+  margin: 10px 0 14px;
+}
+
+.markdown hr {
+  border: 0;
+  border-top: 1px solid #252b3f;
+  margin: 24px 0;
+}
+
+.markdown img {
+  display: block;
+  width: 100%;
+  max-width: 760px;
+  margin: 16px 0 22px;
+  border-radius: 10px;
+  border: 1px solid #303852;
+  background: #10141f;
+}
+
+.markdown blockquote {
+  margin: 16px 0;
+  padding: 14px 16px;
+  border-left: 4px solid #5f84ff;
+  border-radius: 8px;
+  background: #171d2d;
+  color: #d2dbec;
+}
+
+.markdown blockquote p {
+  margin: 0;
+}
+
+
+.markdown figure {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.markdown figcaption {
+  font-size: 12px;
+  color: #9aa3b2;
+}
+
+
+.visual-grid img {
+  margin: 0;
+  max-width: 100%;
+}
+
+.visual-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 18px;
+  margin: 20px 0;
+}
+
+.callout {
+  border-radius: 12px;
+  padding: 16px 18px;
+  margin: 18px 0;
+  border: 1px solid #2a3046;
+  background: #171b29;
+}
+
+.callout-title {
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.callout-tip {
+  border-color: #3550ff;
+  background: rgba(53, 80, 255, 0.12);
+}
+
+.callout-example {
+  border-color: #2ecc71;
+  background: rgba(46, 204, 113, 0.12);
+}
+
+.callout-mistake {
+  border-color: #e74c3c;
+  background: rgba(231, 76, 60, 0.12);
 }
 
 .pager {

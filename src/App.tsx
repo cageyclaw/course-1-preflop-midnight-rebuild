@@ -199,6 +199,314 @@ const drillBank: Record<string, DrillData> = {
   },
 }
 
+const quizBank: Record<string, DrillData> = {
+  A1: {
+    title: 'A1 Chapter Quiz: RFI Fundamentals',
+    intro:
+      'Lock in the RFI defaults: position, sizing, and bottom-of-range discipline.',
+    questions: [
+      {
+        id: 'a1-q1',
+        prompt: 'Default RFI open size in this course is:',
+        choices: ['2.5x', '3.5x', '4x', 'Size by hand strength'],
+        correctIndex: 0,
+        explanation: 'The baseline RFI size is 2.5x unless a lesson says otherwise.',
+      },
+      {
+        id: 'a1-q2',
+        prompt: 'Which position should be tightest by default?',
+        choices: ['UTG / Early Position', 'CO', 'Button', 'Small Blind is widest'],
+        correctIndex: 0,
+        explanation: 'Early position is tight because you are out of position versus stronger ranges.',
+      },
+      {
+        id: 'a1-q3',
+        prompt: 'The “bottom-of-range” approach means you:',
+        choices: [
+          'Memorize only premium hands',
+          'Learn the weakest opens that define the border',
+          'Open only suited hands',
+          'Use different sizes for different hands',
+        ],
+        correctIndex: 1,
+        explanation: 'Knowing the weakest opens lets you reconstruct the rest of the range quickly.',
+      },
+      {
+        id: 'a1-q4',
+        prompt: 'Why avoid opening too thin in early position?',
+        choices: [
+          'You win the blinds too often',
+          'You face more 3-bets and dominated spots out of position',
+          'It disguises your hand too well',
+          'The blinds always fold anyway',
+        ],
+        correctIndex: 1,
+        explanation: 'Thin EP opens get punished by stronger ranges and poor equity realization.',
+      },
+    ],
+  },
+  A2: {
+    title: 'A2 Chapter Quiz: 3-Bet Strategy',
+    intro:
+      'Confirm your 3-bet logic: value vs pressure, range shape, and sizing discipline.',
+    questions: [
+      {
+        id: 'a2-q1',
+        prompt: 'You 3-bet for two main reasons:',
+        choices: ['Value + pressure', 'Curiosity + boredom', 'Pot odds + tilt', 'To see a flop'],
+        correctIndex: 0,
+        explanation: '3-bets build value pots and apply pressure to force folds or deny equity.',
+      },
+      {
+        id: 'a2-q2',
+        prompt: 'Use a more linear 3-bet range when you expect:',
+        choices: ['Calls', 'Folds', 'Only 4-bets', 'No action at all'],
+        correctIndex: 0,
+        explanation: 'Linear ranges work best when villains call often, so you want many strong hands.',
+      },
+      {
+        id: 'a2-q3',
+        prompt: 'Default in-position 3-bet sizing is:',
+        choices: ['3x the open', '2x the open', '4.5x the open', 'Match the open'],
+        correctIndex: 0,
+        explanation: 'The course baseline is 3x IP and bigger OOP.',
+      },
+      {
+        id: 'a2-q4',
+        prompt: 'Why are sizing tells a leak?',
+        choices: [
+          'They reveal hand strength',
+          'They reduce variance',
+          'They save chips',
+          'They guarantee folds',
+        ],
+        correctIndex: 0,
+        explanation: 'Changing size by hand strength makes your range readable and exploitable.',
+      },
+    ],
+  },
+  A3: {
+    title: 'A3 Chapter Quiz: Facing a 3-Bet',
+    intro:
+      'Test your defense buckets, position rules, and what hands actually continue.',
+    questions: [
+      {
+        id: 'a3-q1',
+        prompt: 'Facing a 3-bet, your three default options are:',
+        choices: ['Fold, call, 4-bet', 'Call only', 'Jam or fold', 'Check or raise'],
+        correctIndex: 0,
+        explanation: 'Defense breaks into fold, call, or 4-bet ranges.',
+      },
+      {
+        id: 'a3-q2',
+        prompt: 'A classic in-position call vs a 3-bet is:',
+        choices: ['KQs', 'AJo', 'KQo', 'QTo'],
+        correctIndex: 0,
+        explanation: 'Suited broadways like KQs realize equity well in position.',
+      },
+      {
+        id: 'a3-q3',
+        prompt: 'Why avoid calling 3-bets with offsuit broadways like KQo?',
+        choices: [
+          'They are too strong',
+          'They get dominated and realize equity poorly',
+          'They block bluffs too often',
+          'They are suited',
+        ],
+        correctIndex: 1,
+        explanation: 'Offsuit broadways make weak top pairs and get dominated in big pots.',
+      },
+      {
+        id: 'a3-q4',
+        prompt: 'How should your defense change by position?',
+        choices: [
+          'Wider in position, tighter out of position',
+          'Tighter in position, wider out of position',
+          'Same in all positions',
+          'Only 4-bet out of position',
+        ],
+        correctIndex: 0,
+        explanation: 'Position lets you realize equity; OOP calls bleed quickly.',
+      },
+    ],
+  },
+  A4: {
+    title: 'A4 Chapter Quiz: Blind Defense',
+    intro:
+      'Quick check on pot odds, MDF guardrails, and equity-realization filters.',
+    questions: [
+      {
+        id: 'a4-q1',
+        prompt: 'Facing a 2.5x open in the BB heads-up, you need about:',
+        choices: ['~27% equity', '~10% equity', '~50% equity', '~80% equity'],
+        correctIndex: 0,
+        explanation: 'The pot-odds example in the lesson lands around 27% required equity.',
+      },
+      {
+        id: 'a4-q2',
+        prompt: 'MDF should be treated as:',
+        choices: [
+          'A guardrail, not a religion',
+          'Mandatory in every spot',
+          'Only for tournaments',
+          'A sizing tell system',
+        ],
+        correctIndex: 0,
+        explanation: 'If opponents under-bluff, you can overfold profitably.',
+      },
+      {
+        id: 'a4-q3',
+        prompt: 'In multiway BB defense, you should:',
+        choices: [
+          'Tighten up and cut offsuit trash',
+          'Defend any two cards',
+          'Ignore equity realization',
+          'Only 3-bet',
+        ],
+        correctIndex: 0,
+        explanation: 'Multiway pots punish weak one-pair hands that realize poorly.',
+      },
+      {
+        id: 'a4-q4',
+        prompt: 'Hands that realize equity better from the blinds are usually:',
+        choices: ['Suited/connected hands', 'Random offsuit junk', 'Gapped offsuit kings', 'Any ace'],
+        correctIndex: 0,
+        explanation: 'Suited and connected hands make real draws and strong hands more often.',
+      },
+    ],
+  },
+  A5: {
+    title: 'A5 Chapter Quiz: ISO Raising & Sizing',
+    intro:
+      'Focus on isolation goals, sizing rules, and range discipline.',
+    questions: [
+      {
+        id: 'a5-q1',
+        prompt: 'The primary goal of an ISO raise is to:',
+        choices: [
+          'Isolate the limper heads-up',
+          'See a cheap flop',
+          'Balance your limps',
+          'Slow-play premiums',
+        ],
+        correctIndex: 0,
+        explanation: 'ISO raising targets the weakest player and reduces multiway pots.',
+      },
+      {
+        id: 'a5-q2',
+        prompt: 'Default ISO size rule-of-thumb is:',
+        choices: ['3bb + 1bb per limper', '2bb flat', 'Pot-sized always', 'Min-raise'],
+        correctIndex: 0,
+        explanation: '3bb + 1bb per limper is the baseline sizing rule.',
+      },
+      {
+        id: 'a5-q3',
+        prompt: 'ISO ranges are usually:',
+        choices: ['Slightly tighter than RFI', 'Much wider than RFI', 'Always identical to RFI', 'Only premiums'],
+        correctIndex: 0,
+        explanation: 'ISO is not a steal; you are building a pot vs a caller, often OOP.',
+      },
+      {
+        id: 'a5-q4',
+        prompt: 'If your ISO keeps getting multiple callers, you should:',
+        choices: ['Size up to isolate', 'Size down', 'Never ISO again', 'Limp behind more'],
+        correctIndex: 0,
+        explanation: 'Bigger sizing discourages the field and helps you reach heads-up pots.',
+      },
+    ],
+  },
+  A6: {
+    title: 'A6 Chapter Quiz: Stack Depth',
+    intro:
+      'Check how shallow vs deep stacks change hand class value and sizing discipline.',
+    questions: [
+      {
+        id: 'a6-q1',
+        prompt: 'Shallow stacks (under ~40bb) generally favor:',
+        choices: ['Broadways and pairs', 'Only suited connectors', 'Small suited gappers', 'Any two cards'],
+        correctIndex: 0,
+        explanation: 'Shallow stacks reward top-pair hands and simplify postflop play.',
+      },
+      {
+        id: 'a6-q2',
+        prompt: 'Deep stacks increase the value of:',
+        choices: [
+          'Suited connectors and small pairs',
+          'Only offsuit aces',
+          'Random offsuit junk',
+          'Weak top-pair hands',
+        ],
+        correctIndex: 0,
+        explanation: 'Implied odds grow deep, so disguised hands gain value.',
+      },
+      {
+        id: 'a6-q3',
+        prompt: 'Default 3-bet sizing system is:',
+        choices: ['3x IP, 3.5x OOP', '2x IP, 2x OOP', '4x IP, 5x OOP', 'Same size always'],
+        correctIndex: 0,
+        explanation: 'The course baseline is 3x in position and 3.5x out of position.',
+      },
+      {
+        id: 'a6-q4',
+        prompt: 'Deep stacks require extra caution with:',
+        choices: [
+          'Dominated top-pair hands',
+          'Strong suited connectors',
+          'Pocket aces',
+          'Nut flushes',
+        ],
+        correctIndex: 0,
+        explanation: 'Reverse implied odds punish weak top pairs when stacks are deep.',
+      },
+    ],
+  },
+  A7: {
+    title: 'A7 Chapter Quiz: 30-Day Preflop Plan',
+    intro:
+      'Make sure the habit plan is clear: focus, structure, and tracking.',
+    questions: [
+      {
+        id: 'a7-q1',
+        prompt: 'The plan’s core habit is to:',
+        choices: ['Train one spot at a time', 'Study everything at once', 'Only watch videos', 'Skip drills'],
+        correctIndex: 0,
+        explanation: 'Focused practice beats unfocused “study everything” sessions.',
+      },
+      {
+        id: 'a7-q2',
+        prompt: 'The 10-minute daily split is:',
+        choices: [
+          '3 min study / 4 min drill / 3 min review',
+          '5 min study / 5 min drill / 0 min review',
+          '2 min study / 8 min drill / 0 min review',
+          '10 min drill only',
+        ],
+        correctIndex: 0,
+        explanation: 'The template is 3/4/3 for study, reps, then review.',
+      },
+      {
+        id: 'a7-q3',
+        prompt: 'Your daily scorecard should track:',
+        choices: [
+          'Accuracy plus a top mistake/rule',
+          'Only hours studied',
+          'Only money won',
+          'Opponent names',
+        ],
+        correctIndex: 0,
+        explanation: 'Tracking accuracy and one rule keeps the plan measurable.',
+      },
+      {
+        id: 'a7-q4',
+        prompt: 'Week 1 of the 30-day schedule focuses on:',
+        choices: ['RFI fundamentals', 'Blind defense only', 'Postflop play', '4-bet shoving'],
+        correctIndex: 0,
+        explanation: 'Week 1 is RFI: BTN/CO/HJ and bottom-of-range review.',
+      },
+    ],
+  },
+}
+
 const chapters: Chapter[] = [
   { id: 'A1', title: 'RFI (Raise First In)', type: 'markdown', file: 'A1.md' },
   { id: 'A2', title: '3-Bet Strategy', type: 'markdown', file: 'A2.md' },
@@ -213,17 +521,33 @@ const chapters: Chapter[] = [
   { id: 'D4', title: 'Sizing & Frequency Drill', type: 'drill', drillId: 'd4' },
 ]
 
-const storageKey = 'course-1-preflop-drills'
+const drillStorageKey = 'course-1-preflop-drills'
+const quizStorageKey = 'course-1-preflop-chapter-quizzes'
 
-type DrillProgress = {
+type QuestionProgress = {
   answers: Record<string, number>
   lastUpdated: string
 }
 
-type DrillStore = Record<string, DrillProgress>
+type QuestionStore = Record<string, QuestionProgress>
 
-function Drill({ drillId }: { drillId: string }) {
-  const drill = drillBank[drillId]
+type QuestionSetProps = {
+  data: DrillData
+  setId: string
+  storageKey: string
+  resetLabel: string
+  summaryTitle: string
+  summaryNote: string
+}
+
+function QuestionSet({
+  data,
+  setId,
+  storageKey,
+  resetLabel,
+  summaryTitle,
+  summaryNote,
+}: QuestionSetProps) {
   const [answers, setAnswers] = useState<Record<string, number>>({})
   const [hydrated, setHydrated] = useState(false)
 
@@ -236,47 +560,47 @@ function Drill({ drillId }: { drillId: string }) {
       return
     }
     try {
-      const parsed = JSON.parse(stored) as DrillStore
-      const entry = parsed[drillId]
+      const parsed = JSON.parse(stored) as QuestionStore
+      const entry = parsed[setId]
       setAnswers(entry?.answers ?? {})
     } catch {
       setAnswers({})
     } finally {
       setHydrated(true)
     }
-  }, [drillId])
+  }, [setId, storageKey])
 
   useEffect(() => {
     if (!hydrated) return
     const stored = localStorage.getItem(storageKey)
-    let parsed: DrillStore = {}
+    let parsed: QuestionStore = {}
     if (stored) {
       try {
-        parsed = JSON.parse(stored) as DrillStore
+        parsed = JSON.parse(stored) as QuestionStore
       } catch {
         parsed = {}
       }
     }
-    const next: DrillStore = {
+    const next: QuestionStore = {
       ...parsed,
-      [drillId]: {
+      [setId]: {
         answers,
         lastUpdated: new Date().toISOString(),
       },
     }
     localStorage.setItem(storageKey, JSON.stringify(next))
-  }, [answers, drillId, hydrated])
+  }, [answers, setId, storageKey, hydrated])
 
-  const score = drill.questions.reduce((total, q) => {
+  const score = data.questions.reduce((total, q) => {
     if (answers[q.id] === q.correctIndex) return total + 1
     return total
   }, 0)
 
-  const answeredCount = drill.questions.filter(
+  const answeredCount = data.questions.filter(
     (q) => answers[q.id] !== undefined
   ).length
 
-  const completed = answeredCount === drill.questions.length
+  const completed = answeredCount === data.questions.length
 
   const handleReset = () => {
     setAnswers({})
@@ -285,23 +609,23 @@ function Drill({ drillId }: { drillId: string }) {
   return (
     <section className="drill">
       <div className="drill-card">
-        <h2>{drill.title}</h2>
-        <p className="drill-intro">{drill.intro}</p>
+        <h2>{data.title}</h2>
+        <p className="drill-intro">{data.intro}</p>
         <div className="drill-meta">
           <div className="drill-score">
-            Score: <strong>{score}</strong> / {drill.questions.length}
+            Score: <strong>{score}</strong> / {data.questions.length}
           </div>
           <div className="drill-score">
-            Answered: <strong>{answeredCount}</strong> / {drill.questions.length}
+            Answered: <strong>{answeredCount}</strong> / {data.questions.length}
           </div>
           <button className="drill-reset" onClick={handleReset}>
-            Reset Drill
+            {resetLabel}
           </button>
         </div>
       </div>
 
       <div className="drill-questions">
-        {drill.questions.map((q, idx) => {
+        {data.questions.map((q, idx) => {
           const selected = answers[q.id]
           const isCorrect = selected === q.correctIndex
           const isAnswered = selected !== undefined
@@ -359,21 +683,49 @@ function Drill({ drillId }: { drillId: string }) {
 
       {completed && (
         <div className="drill-summary">
-          <h3>Drill Summary</h3>
+          <h3>{summaryTitle}</h3>
           <p>
-            You finished {drill.title}. Final score:{' '}
+            You finished {data.title}. Final score:{' '}
             <strong>
-              {score} / {drill.questions.length}
+              {score} / {data.questions.length}
             </strong>
             .
           </p>
-          <p className="drill-summary-note">
-            Green lights = nailed it. Red lights = review that spot. Yellow
-            lights mean unanswered.
-          </p>
+          <p className="drill-summary-note">{summaryNote}</p>
         </div>
       )}
     </section>
+  )
+}
+
+function Drill({ drillId }: { drillId: string }) {
+  const drill = drillBank[drillId]
+  return (
+    <QuestionSet
+      data={drill}
+      setId={drillId}
+      storageKey={drillStorageKey}
+      resetLabel="Reset Drill"
+      summaryTitle="Drill Summary"
+      summaryNote={
+        'Green lights = nailed it. Red lights = review that spot. Yellow lights mean unanswered.'
+      }
+    />
+  )
+}
+
+function Quiz({ quizId }: { quizId: string }) {
+  const quiz = quizBank[quizId]
+  if (!quiz) return null
+  return (
+    <QuestionSet
+      data={quiz}
+      setId={quizId}
+      storageKey={quizStorageKey}
+      resetLabel="Reset Quiz"
+      summaryTitle="Quiz Summary"
+      summaryNote="Review any misses before moving on to the next chapter."
+    />
   )
 }
 
@@ -485,10 +837,13 @@ function App() {
         </header>
 
         {current.type === 'markdown' ? (
-          <article
-            className="markdown"
-            dangerouslySetInnerHTML={{ __html: contentHtml }}
-          />
+          <>
+            <article
+              className="markdown"
+              dangerouslySetInnerHTML={{ __html: contentHtml }}
+            />
+            <Quiz quizId={current.id} />
+          </>
         ) : (
           <Drill drillId={current.drillId ?? 'd1'} />
         )}

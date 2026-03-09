@@ -395,7 +395,10 @@ function App() {
         const res = await fetch(`${base}course-md/${current.file}${qs}`, {
           cache: 'no-store',
         })
-        const text = await res.text()
+        let text = await res.text()
+        // Safety: strip internal chapter codes from markdown headings if any slip through
+        // Examples: "# A1 — Title" / "## D3 — Drill" etc.
+        text = text.replace(/^(#{1,6})\s*[A-D]\d+\s*[—-]\s*/gim, '$1 ')
         const html = (await marked.parse(text)) as string
         if (isMounted) setContentHtml(html)
       } catch {

@@ -762,15 +762,18 @@ function Quiz({ quizId }: { quizId: string }) {
   if (!quiz) return null
   const getQuizSummaryTitle = (score: number, total: number) => {
     if (score === total) {
-      return "🎉 Perfect Score! Great work, Champ! You've got this chapter's fundamentals locked down. Take a break — you've earned it!"
+      return "Perfect Score! You've mastered this chapter's fundamentals. Well done!"
     }
     if (score === total - 1) {
-      return "💪 Great Work! You've almost got this down cold. Review the questions you missed, then give it another shot!"
+      return "Great work! You're almost there. Review the one you missed and you'll have it locked down."
     }
     if (score === Math.ceil(total / 2)) {
-      return "📚 Getting There! Time for some more studying! Take a break, grab a drink. When you're ready, come back and try this chapter again."
+      return "Good effort! Time to review the chapter and try again. You've got this!"
     }
-    return "📖 Time to Study! Don't worry — this is how we learn! Review the chapter content, then come back and try again. You've got this!"
+    if (score === 1) {
+      return "Keep studying! Review the chapter content and try again. Every attempt makes you stronger."
+    }
+    return "Don't give up! This is how we learn. Go back to the chapter, review the basics, and come back refreshed."
   }
 
   return (

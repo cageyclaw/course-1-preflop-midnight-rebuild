@@ -32,10 +32,6 @@ jobs:
       - name: Build
         run: npm run build
 
-      - name: Copy static landing page
-        run: |
-          cp -r landing-page/* dist/
-
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:

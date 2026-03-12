@@ -868,6 +868,7 @@ function App() {
               className={`nav-item ${idx === currentIndex ? 'active' : ''}`}
               onClick={() => setCurrentIndex(idx)}
             >
+              <span className="nav-id">{chapter.id}</span>
               <span className="nav-title">{chapter.title}</span>
             </button>
           ))}

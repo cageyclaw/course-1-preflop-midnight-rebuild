@@ -879,7 +879,7 @@ function App() {
         <header className="content-header">
           <div className="content-hero">
             <div className="content-hero-copy">
-              <span className="content-pill">
+              <span className="content-pill seal-badge">
                 {current.type === 'markdown' ? 'Lesson' : 'Drill'}
               </span>
               <h1>{current.title}</h1>
@@ -887,6 +887,11 @@ function App() {
                 Tight ranges, clean pressure, fewer spews. Learn the spots that
                 actually move your preflop win rate.
               </p>
+              <div className="chip-set">
+                <span className="chip">Midnight Academy</span>
+                <span className="chip">Preflop Foundations</span>
+                <span className="chip">30-Day Discipline</span>
+              </div>
             </div>
             <img
               className="content-hero-art"
@@ -895,6 +900,23 @@ function App() {
             />
           </div>
         </header>
+
+        <section className="curriculum-timeline">
+          <div className="timeline-title">Curriculum Path</div>
+          <div className="timeline-items">
+            {chapters
+              .filter((chapter) => chapter.type === 'markdown')
+              .map((chapter) => (
+                <div key={chapter.id} className="timeline-item">
+                  <div className="timeline-seal">{chapter.id}</div>
+                  <div>
+                    <div className="timeline-heading">{chapter.title}</div>
+                    <div className="timeline-sub">Core lesson</div>
+                  </div>
+                </div>
+              ))}
+          </div>
+        </section>
 
         {current.type === 'markdown' ? (
           <>

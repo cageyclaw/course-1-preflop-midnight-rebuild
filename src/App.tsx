@@ -387,7 +387,7 @@ const quizBank: Record<string, DrillData> = {
       },
       {
         id: 'a4-q3',
-        prompt: 'What's the "4-bet bluff" range?',
+        prompt: "What's the \"4-bet bluff\" range?", 
         choices: [
           'Hands strong enough to bluff but not call',
           'Only the very top of range',

@@ -539,13 +539,23 @@ const quizBank: Record<string, DrillData> = {
 }
 
 const chapters: Chapter[] = [
-  { id: 'A1', title: 'RFI (Raise First In)', type: 'markdown', file: 'A1.md' },
-  { id: 'A2', title: '3-Bet Strategy', type: 'markdown', file: 'A2.md' },
-  { id: 'A3', title: 'Facing a 3-Bet', type: 'markdown', file: 'A3.md' },
-  { id: 'A4', title: 'Blind Defense (SB/BB)', type: 'markdown', file: 'A4.md' },
-  { id: 'A5', title: 'Isolation (ISO) Raising & Sizing', type: 'markdown', file: 'A5.md' },
-  { id: 'A6', title: 'Stack Depth (Shallow vs Deep)', type: 'markdown', file: 'A6.md' },
-  { id: 'A7', title: '30-Day Preflop Plan', type: 'markdown', file: 'A7.md' },
+  { id: 'A1', title: 'RFI Fundamentals', type: 'markdown', file: 'A1.md' },
+  {
+    id: 'A2',
+    title: 'Opening Ranges and Position',
+    type: 'markdown',
+    file: 'A2.md',
+  },
+  {
+    id: 'A3',
+    title: 'Three-Betting and Facing Pressure',
+    type: 'markdown',
+    file: 'A3.md',
+  },
+  { id: 'A4', title: '4-Bet and Beyond', type: 'markdown', file: 'A4.md' },
+  { id: 'A5', title: 'Play Against Opens', type: 'markdown', file: 'A5.md' },
+  { id: 'A6', title: 'Short Stack Play', type: 'markdown', file: 'A6.md' },
+  { id: 'A7', title: 'Tournament Dynamics', type: 'markdown', file: 'A7.md' },
   { id: 'D1', title: 'Hand Selection Drill', type: 'drill', drillId: 'd1' },
   { id: 'D2', title: 'Position Drill', type: 'drill', drillId: 'd2' },
   { id: 'D3', title: '3-Bet / 4-Bet Drill', type: 'drill', drillId: 'd3' },
@@ -793,6 +803,19 @@ function App() {
   const [contentHtml, setContentHtml] = useState('<p>Loading…</p>')
 
   const current = useMemo(() => chapters[currentIndex], [currentIndex])
+
+  useEffect(() => {
+    const handleHash = () => {
+      const hash = window.location.hash.replace('#', '').toUpperCase()
+      if (!hash) return
+      const idx = chapters.findIndex((chapter) => chapter.id === hash)
+      if (idx >= 0) setCurrentIndex(idx)
+    }
+
+    handleHash()
+    window.addEventListener('hashchange', handleHash)
+    return () => window.removeEventListener('hashchange', handleHash)
+  }, [])
 
   // UX: when switching sections, always start at the top.
   // Note: browsers may try to keep the focused "Next" button in view, which can

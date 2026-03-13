@@ -585,6 +585,7 @@ const chapters: Chapter[] = [
 
 const drillStorageKey = 'course-1-preflop-drills'
 const quizStorageKey = 'course-1-preflop-chapter-quizzes'
+const progressStorageKey = 'course-1-preflop-progress'
 
 type QuestionProgress = {
   answers: Record<string, number>
@@ -593,6 +594,19 @@ type QuestionProgress = {
 }
 
 type QuestionStore = Record<string, QuestionProgress>
+
+type ProgressEntry = {
+  score: number
+  total: number
+  submitted: boolean
+  completed?: boolean
+  lastUpdated: string
+}
+
+type ProgressStore = {
+  quizzes: Record<string, ProgressEntry>
+  drills: Record<string, ProgressEntry>
+}
 
 type QuestionSetProps = {
   data: DrillData
@@ -605,6 +619,51 @@ type QuestionSetProps = {
   submitLabel?: string
   timedSeconds?: number
   passThreshold?: number
+  progressType?: 'quiz' | 'drill'
+}
+
+const saveProgress = ({
+  kind,
+  id,
+  score,
+  total,
+  submitted,
+  completed,
+}: {
+  kind: 'quiz' | 'drill'
+  id: string
+  score: number
+  total: number
+  submitted: boolean
+  completed?: boolean
+}) => {
+  const stored = localStorage.getItem(progressStorageKey)
+  let parsed: ProgressStore = { quizzes: {}, drills: {} }
+  if (stored) {
+    try {
+      parsed = JSON.parse(stored) as ProgressStore
+    } catch {
+      parsed = { quizzes: {}, drills: {} }
+    }
+  }
+  const entry: ProgressEntry = {
+    score,
+    total,
+    submitted,
+    completed,
+    lastUpdated: new Date().toISOString(),
+  }
+  const next: ProgressStore = {
+    quizzes: {
+      ...parsed.quizzes,
+      ...(kind === 'quiz' ? { [id]: entry } : {}),
+    },
+    drills: {
+      ...parsed.drills,
+      ...(kind === 'drill' ? { [id]: entry } : {}),
+    },
+  }
+  localStorage.setItem(progressStorageKey, JSON.stringify(next))
 }
 
 function QuestionSet({
@@ -618,6 +677,7 @@ function QuestionSet({
   submitLabel,
   timedSeconds,
   passThreshold,
+  progressType,
 }: QuestionSetProps) {
   const [answers, setAnswers] = useState<Record<string, number>>({})
   const [submitted, setSubmitted] = useState(false)
@@ -690,6 +750,30 @@ function QuestionSet({
   const passed = passThreshold
     ? score / data.questions.length >= passThreshold
     : true
+
+  useEffect(() => {
+    if (!hydrated) return
+    if (!progressType) return
+    const isFinal = requireSubmit ? submitted : canSubmit
+    if (!isFinal) return
+    saveProgress({
+      kind: progressType,
+      id: setId,
+      score,
+      total: data.questions.length,
+      submitted: isFinal,
+      completed: progressType === 'quiz' ? isFinal : undefined,
+    })
+  }, [
+    hydrated,
+    progressType,
+    requireSubmit,
+    submitted,
+    canSubmit,
+    score,
+    data.questions.length,
+    setId,
+  ])
 
   useEffect(() => {
     if (!timedSeconds) return
@@ -890,6 +974,7 @@ function Drill({ drillId }: { drillId: string }) {
       submitLabel={drillId === 'd3' ? 'Lock In Answers' : 'Submit Assessment'}
       timedSeconds={timedSeconds}
       passThreshold={passThreshold}
+      progressType="drill"
     />
   )
 }
@@ -923,6 +1008,7 @@ function Quiz({ quizId }: { quizId: string }) {
       summaryNote=""
       requireSubmit
       submitLabel="Submit Quiz"
+      progressType="quiz"
     />
   )
 }

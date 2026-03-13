@@ -27,9 +27,9 @@ type DrillData = {
 
 const drillBank: Record<string, DrillData> = {
   d1: {
-    title: 'Hand Selection Warmup',
+    title: 'RFI Drill',
     intro:
-      'Pick the best starting hands for the spot. Focus on position and basic hand strength.',
+      'Standard scenario drill: choose the best raise-first-in hand for each position.',
     questions: [
       {
         id: 'd1-q1',
@@ -70,9 +70,9 @@ const drillBank: Record<string, DrillData> = {
     ],
   },
   d2: {
-    title: 'Position & Action',
+    title: '3-Bet Defense Drill',
     intro:
-      'Decide the best move based on position and prior action.',
+      'Standard scenario drill: defend versus opens and 3-bets with the best default action.',
     questions: [
       {
         id: 'd2-q1',
@@ -113,9 +113,9 @@ const drillBank: Record<string, DrillData> = {
     ],
   },
   d3: {
-    title: '3-Bet vs 4-Bet Decisions',
+    title: '4-Bet Pot Drill',
     intro:
-      'Make fast calls on 3-bet and 4-bet spots.',
+      'Timed speed drill: answer quickly in 60 seconds for 4-bet pot decisions.',
     questions: [
       {
         id: 'd3-q1',
@@ -156,9 +156,9 @@ const drillBank: Record<string, DrillData> = {
     ],
   },
   d4: {
-    title: 'Sizing & Frequencies',
+    title: 'Final Assessment',
     intro:
-      'Confirm your grasp of standard open sizes and ranges.',
+      'Pass-band assessment: score at least 70% to pass and complete the course.',
     questions: [
       {
         id: 'd4-q1',
@@ -577,10 +577,10 @@ const chapters: Chapter[] = [
   { id: 'A5', title: 'Play Against Opens', type: 'markdown', file: 'A5.md' },
   { id: 'A6', title: 'Short Stack Play', type: 'markdown', file: 'A6.md' },
   { id: 'A7', title: 'Tournament Dynamics', type: 'markdown', file: 'A7.md' },
-  { id: 'D1', title: 'Hand Selection Drill', type: 'drill', drillId: 'd1' },
-  { id: 'D2', title: 'Position Drill', type: 'drill', drillId: 'd2' },
-  { id: 'D3', title: '3-Bet / 4-Bet Drill', type: 'drill', drillId: 'd3' },
-  { id: 'D4', title: 'Sizing & Frequency Drill', type: 'drill', drillId: 'd4' },
+  { id: 'D1', title: 'RFI Drill', type: 'drill', drillId: 'd1' },
+  { id: 'D2', title: '3-Bet Defense Drill', type: 'drill', drillId: 'd2' },
+  { id: 'D3', title: '4-Bet Pot Drill', type: 'drill', drillId: 'd3' },
+  { id: 'D4', title: 'Final Assessment', type: 'drill', drillId: 'd4' },
 ]
 
 const drillStorageKey = 'course-1-preflop-drills'
@@ -603,6 +603,8 @@ type QuestionSetProps = {
   summaryNote: string | ((score: number, total: number) => string)
   requireSubmit?: boolean
   submitLabel?: string
+  timedSeconds?: number
+  passThreshold?: number
 }
 
 function QuestionSet({
@@ -614,10 +616,14 @@ function QuestionSet({
   summaryNote,
   requireSubmit,
   submitLabel,
+  timedSeconds,
+  passThreshold,
 }: QuestionSetProps) {
   const [answers, setAnswers] = useState<Record<string, number>>({})
   const [submitted, setSubmitted] = useState(false)
   const [hydrated, setHydrated] = useState(false)
+  const [timeLeft, setTimeLeft] = useState(timedSeconds ?? 0)
+  const [timedOut, setTimedOut] = useState(false)
 
   useEffect(() => {
     setHydrated(false)
@@ -625,17 +631,25 @@ function QuestionSet({
     if (!stored) {
       setAnswers({})
       setSubmitted(false)
+      setTimedOut(false)
+      setTimeLeft(timedSeconds ?? 0)
       setHydrated(true)
       return
     }
     try {
       const parsed = JSON.parse(stored) as QuestionStore
       const entry = parsed[setId]
-      setAnswers(entry?.answers ?? {})
-      setSubmitted(entry?.submitted ?? false)
+      const nextAnswers = entry?.answers ?? {}
+      const nextSubmitted = entry?.submitted ?? false
+      setAnswers(nextAnswers)
+      setSubmitted(nextSubmitted)
+      setTimedOut(false)
+      setTimeLeft(nextSubmitted ? 0 : timedSeconds ?? 0)
     } catch {
       setAnswers({})
       setSubmitted(false)
+      setTimedOut(false)
+      setTimeLeft(timedSeconds ?? 0)
     } finally {
       setHydrated(true)
     }
@@ -673,7 +687,40 @@ function QuestionSet({
   ).length
 
   const canSubmit = answeredCount === data.questions.length
-  const completed = canSubmit && (!requireSubmit || submitted)
+  const passed = passThreshold
+    ? score / data.questions.length >= passThreshold
+    : true
+
+  useEffect(() => {
+    if (!timedSeconds) return
+    if (!hydrated) return
+    if (submitted) return
+    if (timedOut) return
+
+    setTimeLeft((prev) => (prev > 0 ? prev : timedSeconds))
+
+    const interval = window.setInterval(() => {
+      setTimeLeft((prev) => {
+        if (prev <= 1) {
+          window.clearInterval(interval)
+          setTimedOut(true)
+          setSubmitted(true)
+          return 0
+        }
+        return prev - 1
+      })
+    }, 1000)
+
+    return () => window.clearInterval(interval)
+  }, [timedSeconds, hydrated, submitted, timedOut])
+
+  const formatTime = (seconds: number) => {
+    const mins = Math.floor(seconds / 60)
+    const secs = seconds % 60
+    return `${mins}:${secs.toString().padStart(2, '0')}`
+  }
+
+  const isLocked = requireSubmit && submitted
 
   const resolvedSummaryTitle =
     typeof summaryTitle === 'function'
@@ -688,6 +735,8 @@ function QuestionSet({
   const handleReset = () => {
     setAnswers({})
     setSubmitted(false)
+    setTimedOut(false)
+    setTimeLeft(timedSeconds ?? 0)
   }
 
   return (
@@ -702,6 +751,12 @@ function QuestionSet({
           <div className="drill-score">
             Answered: <strong>{answeredCount}</strong> / {data.questions.length}
           </div>
+          {timedSeconds ? (
+            <div className={`drill-timer ${timedOut ? 'expired' : ''}`}>
+              {timedOut ? 'Time expired' : 'Time left'}:{' '}
+              <strong>{formatTime(timeLeft)}</strong>
+            </div>
+          ) : null}
           <button className="drill-reset" onClick={handleReset}>
             {resetLabel}
           </button>
@@ -749,6 +804,7 @@ function QuestionSet({
                           [q.id]: choiceIndex,
                         }))
                       }
+                      disabled={isLocked}
                     >
                       {choice}
                     </button>
@@ -777,10 +833,15 @@ function QuestionSet({
           {!canSubmit ? (
             <p className="drill-submit-note">Answer all questions to submit.</p>
           ) : null}
+          {timedSeconds ? (
+            <p className="drill-submit-note">
+              Timer ends the drill automatically.
+            </p>
+          ) : null}
         </div>
       )}
 
-      {completed && (
+      {((requireSubmit && submitted) || (!requireSubmit && canSubmit)) && (
         <div className="drill-summary">
           <h3>{resolvedSummaryTitle}</h3>
           <p>
@@ -790,7 +851,13 @@ function QuestionSet({
             </strong>
             .
           </p>
-          {resolvedSummaryNote ? (
+          {passThreshold ? (
+            <p className="drill-summary-note">
+              {passed
+                ? `Pass. You cleared ${(passThreshold * 100).toFixed(0)}% and unlocked the completion badge.`
+                : `Not quite. You need ${(passThreshold * 100).toFixed(0)}% to pass. Reset and try again.`}
+            </p>
+          ) : resolvedSummaryNote ? (
             <p className="drill-summary-note">{resolvedSummaryNote}</p>
           ) : null}
         </div>
@@ -801,16 +868,28 @@ function QuestionSet({
 
 function Drill({ drillId }: { drillId: string }) {
   const drill = drillBank[drillId]
+  const timedSeconds = drillId === 'd3' ? 60 : undefined
+  const passThreshold = drillId === 'd4' ? 0.7 : undefined
+  const requireSubmit = drillId === 'd3' || drillId === 'd4'
+
+  const summaryTitle = drillId === 'd4' ? 'Final Assessment Summary' : 'Drill Summary'
+  const summaryNote =
+    drillId === 'd4'
+      ? 'Score 70% or better to pass. Reset to re-attempt.'
+      : 'Green lights = nailed it. Red lights = review that spot. Yellow lights mean unanswered.'
+
   return (
     <QuestionSet
       data={drill}
       setId={drillId}
       storageKey={drillStorageKey}
       resetLabel="Reset Drill"
-      summaryTitle="Drill Summary"
-      summaryNote={
-        'Green lights = nailed it. Red lights = review that spot. Yellow lights mean unanswered.'
-      }
+      summaryTitle={summaryTitle}
+      summaryNote={summaryNote}
+      requireSubmit={requireSubmit}
+      submitLabel={drillId === 'd3' ? 'Lock In Answers' : 'Submit Assessment'}
+      timedSeconds={timedSeconds}
+      passThreshold={passThreshold}
     />
   )
 }

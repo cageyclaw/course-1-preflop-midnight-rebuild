@@ -404,6 +404,21 @@ h1,
   color: var(--text);
 }
 
+.drill-timer {
+  font-size: 14px;
+  color: var(--text-strong);
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg-panel);
+}
+
+.drill-timer.expired {
+  color: #ffb3b3;
+  border-color: #ff5c5c;
+  background: rgba(255, 92, 92, 0.12);
+}
+
 .drill-reset {
   margin-left: auto;
   background: var(--bg-panel-alt);
@@ -515,6 +530,11 @@ h1,
 
 .choice:hover {
   border-color: var(--accent);
+}
+
+.choice:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
 }
 
 .choice.selected {

@@ -204,339 +204,360 @@ const quizBank: Record<string, DrillData> = {
   A1: {
     title: 'Chapter Quiz: RFI Fundamentals',
     intro:
-      'Lock in the RFI defaults: position, sizing, and bottom-of-range discipline.',
+      'Scenario check: nail the core RFI ideas before moving on.',
     questions: [
       {
         id: 'a1-q1',
-        prompt: 'Default RFI open size in this course is:',
-        choices: ['3.5x', '4x', '2.5x', 'Size by hand strength'],
-        correctIndex: 2,
-        explanation: 'The baseline RFI size is 2.5x unless a lesson says otherwise.',
+        prompt: 'What does RFI mean in preflop poker?',
+        choices: [
+          'Raise for information',
+          'Raise first in',
+          'Re-raise from inside',
+          'Range first in',
+        ],
+        correctIndex: 1,
+        explanation: 'RFI stands for “raise first in.”',
       },
       {
         id: 'a1-q2',
-        prompt: 'RFI sizing discipline means you:',
-        choices: [
-          'Go bigger with strong hands',
-          'Use the same open size for your whole range',
-          'Min-raise only on the Button',
-          'Size by table vibe',
-        ],
-        correctIndex: 1,
-        explanation: 'Consistent sizing keeps your range protected and avoids tells.',
+        prompt: 'Which position should generally use the tightest opening range?',
+        choices: ['Button', 'Cutoff', 'Under the gun', 'Small blind'],
+        correctIndex: 2,
+        explanation: 'UTG is first to act and therefore must open the tightest.',
       },
       {
         id: 'a1-q3',
-        prompt: 'True or False: The Small Blind is a “discount Button.”',
-        choices: ['False', 'True'],
-        correctIndex: 0,
-        explanation: 'False. The SB is out of position and should open tighter than the BTN.',
+        prompt: 'Why can players open a wider range from late position?',
+        choices: [
+          'Because blinds are larger',
+          'They act later postflop and realize equity better',
+          'Because the cards are stronger on the button',
+          'Because it guarantees folds',
+        ],
+        correctIndex: 1,
+        explanation: 'Late position acts last postflop, so more hands can realize equity.',
       },
       {
         id: 'a1-q4',
-        prompt: 'A strong filter for choosing opens is whether the hand is:',
+        prompt: 'What is a strong default lesson takeaway for RFI sizing?',
         choices: [
-          'Pretty and suited',
-          'Any two cards in position',
-          'Only premiums',
-          'Defendable vs a 3-bet and playable',
+          'Use a consistent default size',
+          'Size larger with strong hands',
+          'Change size by position only',
+          'Always min-raise',
         ],
-        correctIndex: 3,
-        explanation: 'If a hand can’t comfortably continue versus pressure, it’s usually too thin to open.',
+        correctIndex: 0,
+        explanation: 'Consistent sizing protects your range and reduces tells.',
       },
     ],
   },
   A2: {
     title: 'Chapter Quiz: 3-Bet Strategy',
     intro:
-      'Confirm your 3-bet logic: value vs pressure, range shape, and sizing discipline.',
+      'Scenario check: test your 3-bet logic and motivation.',
     questions: [
       {
         id: 'a2-q1',
-        prompt: 'You 3-bet for two main reasons:',
-        choices: ['Curiosity + boredom', 'Pot odds + tilt', 'Value + pressure', 'To see a flop'],
+        prompt: 'What is a 3-bet preflop?',
+        choices: [
+          'A limp after a raise',
+          'A call of a 3-bet',
+          'A re-raise versus an open raise',
+          'An all-in overcall',
+        ],
         correctIndex: 2,
-        explanation: '3-bets build value pots and apply pressure to force folds or deny equity.',
+        explanation: 'A 3-bet is the first re-raise after an open.',
       },
       {
         id: 'a2-q2',
-        prompt: 'Use a more linear 3-bet range when you expect:',
-        choices: ['Folds', 'Only 4-bets', 'No action at all', 'Calls'],
-        correctIndex: 3,
-        explanation: 'Linear ranges work best when opponents call often, so you want more strong hands.',
+        prompt: 'Which pair best describes the two main reasons to 3-bet?',
+        choices: [
+          'Fold equity and boredom',
+          'Value and bluff/semi-bluff pressure',
+          'Pot odds and position',
+          'Tilt and timing tells',
+        ],
+        correctIndex: 1,
+        explanation: 'You 3-bet for value or to apply bluff/semi-bluff pressure.',
       },
       {
         id: 'a2-q3',
-        prompt: 'Default out-of-position 3-bet sizing in this course is:',
-        choices: ['3x the open', '3.5x the open', '2x the open', 'Match the open'],
-        correctIndex: 1,
-        explanation: 'OOP you size up to deny equity and reduce positional disadvantage.',
+        prompt: "What's the primary motivation for 3-betting for value?",
+        choices: [
+          'To get called by worse hands',
+          'To avoid a flop',
+          'To balance bluffs',
+          'To win blinds only',
+        ],
+        correctIndex: 0,
+        explanation: 'Value 3-bets aim to get action from worse hands.',
       },
       {
         id: 'a2-q4',
-        prompt: 'Why are sizing tells a leak?',
+        prompt: 'When 3-betting as a bluff, what should be true?',
         choices: [
-          'They reduce variance',
-          'They save chips',
-          'They reveal hand strength',
-          'They guarantee folds',
+          'The opponent never folds',
+          'You are always out of position',
+          'Your hand is the nuts',
+          'The opponent should have a high fold percentage',
         ],
-        correctIndex: 2,
-        explanation: 'Changing size by hand strength makes your range readable and exploitable.',
+        correctIndex: 3,
+        explanation: 'Bluff 3-bets rely on folds often enough to be profitable.',
       },
     ],
   },
   A3: {
     title: 'Chapter Quiz: Facing a 3-Bet',
     intro:
-      'Test your defense buckets, position rules, and what hands actually continue.',
+      'Scenario check: confirm your response when pressure comes back at you.',
     questions: [
       {
         id: 'a3-q1',
-        prompt: 'Facing a 3-bet, your three default options are:',
-        choices: ['Call only', 'Fold, call, 4-bet', 'Jam or fold', 'Check or raise'],
-        correctIndex: 1,
-        explanation: 'Defense breaks into fold, call, or 4-bet ranges.',
+        prompt: 'What does "facing a 3-bet" mean?',
+        choices: [
+          'You 3-bet someone',
+          'You limped and got raised',
+          'You are facing a re-raise after you opened',
+          'You are in the big blind',
+        ],
+        correctIndex: 2,
+        explanation: 'Facing a 3-bet means your open has been re-raised.',
       },
       {
         id: 'a3-q2',
-        prompt: 'Versus a very tight 3-bettor, your best adjustment is to:',
+        prompt: 'When calling a 3-bet, what position advantage becomes less important?',
         choices: [
-          'Call wider to see flops',
-          '3-bet more',
-          'Tighten continuing range and 4-bet less',
-          'Jam any ace',
+          'Initiative always matters more',
+          'Position matters less when deeper',
+          'Pot odds always shrink',
+          'Stack depth is irrelevant',
         ],
-        correctIndex: 2,
-        explanation: 'If their range is strong, you should defend less and avoid thin continues.',
+        correctIndex: 1,
+        explanation: 'The lesson takeaway: deeper stacks reduce the positional edge when calling.',
       },
       {
         id: 'a3-q3',
-        prompt: 'Why avoid calling 3-bets with offsuit broadways like KQo?',
-        choices: [
-          'They are too strong',
-          'They block bluffs too often',
-          'They are suited',
-          'They get dominated and realize equity poorly',
-        ],
-        correctIndex: 3,
-        explanation: 'Offsuit broadways make weak top pairs and get dominated in big pots.',
+        prompt: 'What is a common mistake when facing 3-bets?',
+        choices: ['Only 4-betting', 'Over-folding premium hands', 'Calling too wide', 'Never folding'],
+        correctIndex: 2,
+        explanation: 'Calling too wide leaks chips against strong 3-bet ranges.',
       },
       {
         id: 'a3-q4',
-        prompt: 'How should your defense change by position?',
+        prompt: 'What is the "4-bet or fold" strategy?',
         choices: [
-          'Tighter in position, wider out of position',
-          'Wider in position, tighter out of position',
-          'Same in all positions',
-          'Only 4-bet out of position',
+          'Either 4-bet or fold, rarely call',
+          'Always flat call',
+          'Only 4-bet premiums',
+          'Only fold in position',
         ],
-        correctIndex: 1,
-        explanation: 'Position lets you realize equity; OOP calls bleed quickly.',
+        correctIndex: 0,
+        explanation: 'This strategy avoids thin calls by choosing 4-bet or fold.',
       },
     ],
   },
   A4: {
-    title: 'Chapter Quiz: Blind Defense',
+    title: 'Chapter Quiz: 4-Bet and Beyond',
     intro:
-      'Quick check on pot odds, MDF guardrails, and equity-realization filters.',
+      'Scenario check: test your 4-bet definitions and stack-depth logic.',
     questions: [
       {
         id: 'a4-q1',
-        prompt: 'Facing a 2.5x open in the BB heads-up, you need about:',
-        choices: ['~10% equity', '~50% equity', '~27% equity', '~80% equity'],
-        correctIndex: 2,
-        explanation: 'The pot-odds example in the lesson lands around 27% required equity.',
+        prompt: 'What is a 4-bet?',
+        choices: [
+          'The first raise',
+          'A call after a 3-bet',
+          'A check-raise postflop',
+          'A re-raise after a 3-bet',
+        ],
+        correctIndex: 3,
+        explanation: 'A 4-bet is the re-raise that follows a 3-bet.',
       },
       {
         id: 'a4-q2',
-        prompt: 'MDF should be treated as:',
+        prompt: 'When do you typically 4-bet for value?',
         choices: [
-          'Mandatory in every spot',
-          'A guardrail, not a religion',
-          'Only for tournaments',
-          'A sizing tell system',
+          'When stacks are tiny',
+          'When you have a premium hand',
+          'When you want to see a flop',
+          'When you are tilting',
         ],
         correctIndex: 1,
-        explanation: 'If opponents under-bluff, you can overfold profitably.',
+        explanation: 'Value 4-bets come from premium hands that want action.',
       },
       {
         id: 'a4-q3',
-        prompt: 'In multiway BB defense, you should:',
+        prompt: 'What's the "4-bet bluff" range?',
         choices: [
-          'Defend any two cards',
-          'Ignore equity realization',
-          'Tighten up and cut offsuit trash',
-          'Only 3-bet',
+          'Hands strong enough to bluff but not call',
+          'Only the very top of range',
+          'Any two cards',
+          'Hands you always fold',
         ],
-        correctIndex: 2,
-        explanation: 'Multiway pots punish weak one-pair hands that realize poorly.',
+        correctIndex: 0,
+        explanation: '4-bet bluffs are strong blockers that can’t profitably call.',
       },
       {
         id: 'a4-q4',
-        prompt: 'Hands that realize equity better from the blinds are usually:',
-        choices: ['Random offsuit junk', 'Gapped offsuit kings', 'Any ace', 'Suited/connected hands'],
-        correctIndex: 3,
-        explanation: 'Suited and connected hands make real draws and strong hands more often.',
+        prompt: 'How does stack depth affect 4-bet strategy?',
+        choices: [
+          'Shallow stacks favor more calling',
+          'Depth makes no difference',
+          'Deeper stacks favor more calling',
+          'Deeper stacks mean only jams',
+        ],
+        correctIndex: 2,
+        explanation: 'Deeper stacks increase postflop options, so calls appear more.',
       },
     ],
   },
   A5: {
-    title: 'Chapter Quiz: ISO Raising & Sizing',
+    title: 'Chapter Quiz: Play Against Opens',
     intro:
-      'Focus on isolation goals, sizing rules, and range discipline.',
+      'Scenario check: confirm your response to opens and isolation spots.',
     questions: [
       {
         id: 'a5-q1',
-        prompt: 'The primary goal of an ISO raise is to:',
+        prompt: 'What is "playing against an open"?',
         choices: [
-          'See a cheap flop',
-          'Isolate the limper heads-up',
-          'Balance your limps',
-          'Slow-play premiums',
+          'Opening the pot yourself',
+          'Acting after someone has opened',
+          'Only limping behind',
+          'Checking from the big blind',
         ],
         correctIndex: 1,
-        explanation: 'ISO raising targets the weakest player and reduces multiway pots.',
+        explanation: 'It means you are responding after another player opens.',
       },
       {
         id: 'a5-q2',
-        prompt: 'Rule-of-thumb ISO sizing is:',
-        choices: [
-          '2bb flat',
-          'Pot-sized always',
-          '3bb + 1bb per limper (then adjust)',
-          'Min-raise',
-        ],
+        prompt: 'Which position has the weakest range to open?',
+        choices: ['Button', 'Cutoff', 'Under the gun', 'Small blind'],
         correctIndex: 2,
-        explanation: 'The baseline formula is 3bb + 1bb per limper, then tweak for table dynamics.',
+        explanation: 'The lesson answer here: UTG is the weakest opening range.',
       },
       {
         id: 'a5-q3',
-        prompt: 'Before ISO-raising, you should account for:',
+        prompt: 'What is "isolation"?',
         choices: [
-          'Only your own stack',
-          'Nothing; always ISO',
-          'Your image only',
-          'Players behind who can squeeze',
+          'Limping behind',
+          'Flat calling to see a flop',
+          'Raising to play heads-up with a weaker opponent',
+          'Checking to trap',
         ],
-        correctIndex: 3,
-        explanation: 'More aggressive players behind increase squeeze risk and shrink your ISO range.',
+        correctIndex: 2,
+        explanation: 'Isolation raises target a weaker player and cut out callers.',
       },
       {
         id: 'a5-q4',
-        prompt: 'ISO ranges are usually:',
+        prompt: 'When should you defend your big blind?',
         choices: [
-          'Much wider than RFI',
-          'Slightly tighter than RFI',
-          'Always identical to RFI',
-          'Only premiums',
+          'When the opener is out of position',
+          'Only with premium hands',
+          'Never versus late position',
+          'Only when short stacked',
         ],
-        correctIndex: 1,
-        explanation: 'ISO is not a steal; you are building a pot vs a caller, often OOP.',
+        correctIndex: 0,
+        explanation: 'Defend when the opener is out of position to you.',
       },
     ],
   },
   A6: {
-    title: 'Chapter Quiz: Stack Depth',
+    title: 'Chapter Quiz: Short Stack Play',
     intro:
-      'Check how shallow vs deep stacks change hand class value and sizing discipline.',
+      'Scenario check: verify short-stack thresholds and push/fold rules.',
     questions: [
       {
         id: 'a6-q1',
-        prompt: 'Shallow stacks (under ~40bb) usually favor:',
-        choices: [
-          'Only suited connectors',
-          'Any two suited cards',
-          'High-card hands and pairs that make top pair',
-          'Weak offsuit gappers',
-        ],
-        correctIndex: 2,
-        explanation: 'Shallow stacks reward hands that make strong top pairs quickly.',
+        prompt: 'At what stack depth is a player considered "short stacked"?',
+        choices: ['Under 20 big blinds', 'Under 50 big blinds', 'Under 100 big blinds', 'Over 150 big blinds'],
+        correctIndex: 1,
+        explanation: 'This course defines short stacks as under 50bb.',
       },
       {
         id: 'a6-q2',
-        prompt: 'Deep stacks increase the value of:',
-        choices: [
-          'Only offsuit aces',
-          'Suited connectors and small pairs',
-          'Random offsuit junk',
-          'Weak top-pair hands',
-        ],
-        correctIndex: 1,
-        explanation: 'Implied odds grow deep, so disguised hands gain value.',
+        prompt: 'What is push-or-fold?',
+        choices: ['Either go all-in or fold', 'Always limp', 'Call then shove later', 'Only min-raise'],
+        correctIndex: 0,
+        explanation: 'Push-or-fold means your only options are all-in or fold.',
       },
       {
         id: 'a6-q3',
-        prompt: 'Default 3-bet sizing system is:',
-        choices: ['2x IP, 2x OOP', '4x IP, 5x OOP', 'Same size always', '3x IP, 3.5x OOP'],
-        correctIndex: 3,
-        explanation: 'The course baseline is 3x in position and 3.5x out of position.',
+        prompt: 'What is an "open push"?',
+        choices: [
+          'Limping in',
+          'Going all-in instead of min-raising',
+          'Calling a raise',
+          'Check-raising',
+        ],
+        correctIndex: 1,
+        explanation: 'An open push is an all-in open instead of a small raise.',
       },
       {
         id: 'a6-q4',
-        prompt: 'Reverse implied odds are most dangerous with:',
+        prompt: 'Why do short stacks open with tighter ranges?',
         choices: [
-          'Strong suited connectors',
-          'Dominated top-pair hands',
-          'Pocket aces',
-          'Nut flushes',
+          'To look tough',
+          'Because they see more flops',
+          'To ensure they have enough equity',
+          'Because position never matters',
         ],
-        correctIndex: 1,
-        explanation: 'Deep stacks punish weak top pairs when you’re dominated.',
+        correctIndex: 2,
+        explanation: 'With fewer chips, you need stronger equity to commit.',
       },
     ],
   },
   A7: {
-    title: 'Chapter Quiz: 30-Day Preflop Plan',
+    title: 'Chapter Quiz: Tournament Dynamics',
     intro:
-      'Make sure the habit plan is clear: focus, structure, and tracking.',
+      'Scenario check: confirm tournament-only concepts like ICM and bubble play.',
     questions: [
       {
         id: 'a7-q1',
-        prompt: 'The plan’s core habit is to:',
-        choices: ['Study everything at once', 'Only watch videos', 'Train one spot at a time', 'Skip drills'],
-        correctIndex: 2,
-        explanation: 'Focused practice beats unfocused “study everything” sessions.',
+        prompt: 'How do tournament dynamics differ from cash games?',
+        choices: [
+          'Stacks are always infinite',
+          'Rake is higher',
+          'Hands are dealt face-up',
+          'Blinds increase over time',
+        ],
+        correctIndex: 3,
+        explanation: 'Tournament blinds rise, which changes stack pressure over time.',
       },
       {
         id: 'a7-q2',
-        prompt: 'The 10-minute daily split is:',
+        prompt: 'What is "ICM" in tournaments?',
         choices: [
-          '5 min study / 5 min drill / 0 min review',
-          '3 min study / 4 min drill / 3 min review',
-          '2 min study / 8 min drill / 0 min review',
-          '10 min drill only',
+          'Instant Chip Multiplier',
+          'Independent Cash Method',
+          'Independent Chip Model - valuing chips by tournament equity',
+          'In-game Card Management',
         ],
-        correctIndex: 1,
-        explanation: 'The template is 3/4/3 for study, reps, then review.',
+        correctIndex: 2,
+        explanation: 'ICM converts chip stacks into tournament equity value.',
       },
       {
         id: 'a7-q3',
-        prompt: 'Your daily scorecard should track:',
-        choices: [
-          'Only hours studied',
-          'Only money won',
-          'Opponent names',
-          'Accuracy plus a top mistake/rule',
-        ],
-        correctIndex: 3,
-        explanation: 'Tracking accuracy and one rule keeps the plan measurable.',
+        prompt: 'When should you play more conservatively in a tournament?',
+        choices: ['Near the bubble', 'Early levels', 'Always on the button', 'After winning a pot'],
+        correctIndex: 0,
+        explanation: 'Near the bubble, survival and equity preservation matter more.',
       },
       {
         id: 'a7-q4',
-        prompt: 'The plan emphasizes:',
+        prompt: 'What is a "bubble" in a tournament?',
         choices: [
-          'Memorizing the entire 30-day calendar',
-          'Volume over accuracy',
-          'Habits + review, not memorizing a rigid schedule',
-          'Skipping review',
+          'A table break',
+          'The pay jump just before making the money',
+          'The final table',
+          'A rebuy period',
         ],
-        correctIndex: 2,
-        explanation: 'Consistency and review matter more than perfectly memorizing the calendar.',
+        correctIndex: 1,
+        explanation: 'The bubble is the last elimination before payouts begin.',
       },
     ],
   },
 }
+
 
 const chapters: Chapter[] = [
   { id: 'A1', title: 'RFI Fundamentals', type: 'markdown', file: 'A1.md' },
@@ -567,6 +588,7 @@ const quizStorageKey = 'course-1-preflop-chapter-quizzes'
 
 type QuestionProgress = {
   answers: Record<string, number>
+  submitted?: boolean
   lastUpdated: string
 }
 
@@ -579,6 +601,8 @@ type QuestionSetProps = {
   resetLabel: string
   summaryTitle: string | ((score: number, total: number) => string)
   summaryNote: string | ((score: number, total: number) => string)
+  requireSubmit?: boolean
+  submitLabel?: string
 }
 
 function QuestionSet({
@@ -588,8 +612,11 @@ function QuestionSet({
   resetLabel,
   summaryTitle,
   summaryNote,
+  requireSubmit,
+  submitLabel,
 }: QuestionSetProps) {
   const [answers, setAnswers] = useState<Record<string, number>>({})
+  const [submitted, setSubmitted] = useState(false)
   const [hydrated, setHydrated] = useState(false)
 
   useEffect(() => {
@@ -597,6 +624,7 @@ function QuestionSet({
     const stored = localStorage.getItem(storageKey)
     if (!stored) {
       setAnswers({})
+      setSubmitted(false)
       setHydrated(true)
       return
     }
@@ -604,8 +632,10 @@ function QuestionSet({
       const parsed = JSON.parse(stored) as QuestionStore
       const entry = parsed[setId]
       setAnswers(entry?.answers ?? {})
+      setSubmitted(entry?.submitted ?? false)
     } catch {
       setAnswers({})
+      setSubmitted(false)
     } finally {
       setHydrated(true)
     }
@@ -626,11 +656,12 @@ function QuestionSet({
       ...parsed,
       [setId]: {
         answers,
+        submitted,
         lastUpdated: new Date().toISOString(),
       },
     }
     localStorage.setItem(storageKey, JSON.stringify(next))
-  }, [answers, setId, storageKey, hydrated])
+  }, [answers, submitted, setId, storageKey, hydrated])
 
   const score = data.questions.reduce((total, q) => {
     if (answers[q.id] === q.correctIndex) return total + 1
@@ -641,7 +672,8 @@ function QuestionSet({
     (q) => answers[q.id] !== undefined
   ).length
 
-  const completed = answeredCount === data.questions.length
+  const canSubmit = answeredCount === data.questions.length
+  const completed = canSubmit && (!requireSubmit || submitted)
 
   const resolvedSummaryTitle =
     typeof summaryTitle === 'function'
@@ -655,6 +687,7 @@ function QuestionSet({
 
   const handleReset = () => {
     setAnswers({})
+    setSubmitted(false)
   }
 
   return (
@@ -732,6 +765,21 @@ function QuestionSet({
         })}
       </div>
 
+      {requireSubmit && !submitted && (
+        <div className="drill-submit">
+          <button
+            className="drill-submit-btn"
+            onClick={() => setSubmitted(true)}
+            disabled={!canSubmit}
+          >
+            {submitLabel ?? 'Submit'}
+          </button>
+          {!canSubmit ? (
+            <p className="drill-submit-note">Answer all questions to submit.</p>
+          ) : null}
+        </div>
+      )}
+
       {completed && (
         <div className="drill-summary">
           <h3>{resolvedSummaryTitle}</h3>
@@ -794,6 +842,8 @@ function Quiz({ quizId }: { quizId: string }) {
       resetLabel="Reset Quiz"
       summaryTitle={getQuizSummaryTitle}
       summaryNote=""
+      requireSubmit
+      submitLabel="Submit Quiz"
     />
   )
 }

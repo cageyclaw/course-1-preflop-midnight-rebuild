@@ -426,6 +426,35 @@ h1,
   gap: 16px;
 }
 
+.drill-submit {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-start;
+}
+
+.drill-submit-btn {
+  background: var(--accent);
+  border: 1px solid var(--accent);
+  color: #1a1710;
+  padding: 10px 16px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  box-shadow: var(--shadow-soft);
+}
+
+.drill-submit-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.drill-submit-note {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-muted);
+}
+
 .question-card {
   background: var(--bg-panel);
   border: 1px solid var(--border);

@@ -146,6 +146,96 @@ h1,
 
 .content-header {
   padding-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.scoreboard {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 18px 22px;
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  background: linear-gradient(130deg, rgba(11, 16, 32, 0.92), rgba(20, 17, 42, 0.95));
+  box-shadow: var(--shadow-soft);
+}
+
+.scoreboard-copy {
+  min-width: 0;
+}
+
+.scoreboard-kicker {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: var(--accent);
+  margin-bottom: 6px;
+}
+
+.scoreboard-title {
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--text-strong);
+}
+
+.scoreboard-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.fuel-gauge {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  min-width: 260px;
+  width: 40%;
+}
+
+.fuel-gauge-track {
+  position: relative;
+  height: 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border-soft);
+  background: rgba(231, 230, 242, 0.08);
+  overflow: hidden;
+  box-shadow: inset 0 0 12px rgba(0, 0, 0, 0.55);
+}
+
+.fuel-gauge-fill {
+  height: 100%;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #d6b46a, #8b5cf6);
+  box-shadow: 0 0 18px rgba(139, 92, 246, 0.5);
+  transition: width 0.3s ease;
+}
+
+.fuel-gauge-stats {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+}
+
+.fuel-gauge-count {
+  font-weight: 700;
+  color: var(--text-strong);
+}
+
+.fuel-gauge-label {
+  flex: 1;
+  text-align: center;
+}
+
+.fuel-gauge-percent {
+  font-weight: 700;
+  color: var(--accent);
 }
 
 .content-hero {
@@ -606,6 +696,15 @@ h1,
   .content-hero {
     grid-template-columns: 1fr;
     padding: 20px;
+  }
+
+  .scoreboard {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .fuel-gauge {
+    width: 100%;
   }
 
   .content-hero-art {

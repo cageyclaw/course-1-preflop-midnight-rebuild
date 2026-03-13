@@ -608,6 +608,34 @@ type ProgressStore = {
   drills: Record<string, ProgressEntry>
 }
 
+type ProgressSnapshot = {
+  completed: number
+  total: number
+}
+
+const getProgressSnapshot = (total: number): ProgressSnapshot => {
+  if (typeof window === 'undefined') {
+    return { completed: 0, total }
+  }
+
+  const stored = localStorage.getItem(progressStorageKey)
+  if (!stored) return { completed: 0, total }
+
+  try {
+    const parsed = JSON.parse(stored) as ProgressStore
+    const quizCompleted = Object.values(parsed.quizzes || {}).filter(
+      (entry) => entry.completed ?? entry.submitted
+    ).length
+    const drillCompleted = Object.values(parsed.drills || {}).filter(
+      (entry) => entry.submitted
+    ).length
+    const completed = Math.min(total, quizCompleted + drillCompleted)
+    return { completed, total }
+  } catch {
+    return { completed: 0, total }
+  }
+}
+
 type QuestionSetProps = {
   data: DrillData
   setId: string
@@ -664,6 +692,9 @@ const saveProgress = ({
     },
   }
   localStorage.setItem(progressStorageKey, JSON.stringify(next))
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new Event('course-progress-update'))
+  }
 }
 
 function QuestionSet({
@@ -1016,8 +1047,28 @@ function Quiz({ quizId }: { quizId: string }) {
 function App() {
   const [currentIndex, setCurrentIndex] = useState(0)
   const [contentHtml, setContentHtml] = useState('<p>Loading…</p>')
+  const totalUnits = chapters.length
+  const [progressSnapshot, setProgressSnapshot] = useState(() =>
+    getProgressSnapshot(totalUnits)
+  )
+  const progressPercent = totalUnits
+    ? Math.round((progressSnapshot.completed / totalUnits) * 100)
+    : 0
 
   const current = useMemo(() => chapters[currentIndex], [currentIndex])
+
+  useEffect(() => {
+    const updateProgress = () => {
+      setProgressSnapshot(getProgressSnapshot(totalUnits))
+    }
+    updateProgress()
+    window.addEventListener('storage', updateProgress)
+    window.addEventListener('course-progress-update', updateProgress)
+    return () => {
+      window.removeEventListener('storage', updateProgress)
+      window.removeEventListener('course-progress-update', updateProgress)
+    }
+  }, [totalUnits])
 
   useEffect(() => {
     const handleHash = () => {
@@ -1115,6 +1166,28 @@ function App() {
 
       <main className="content">
         <header className="content-header">
+          <div className="scoreboard">
+            <div className="scoreboard-copy">
+              <div className="scoreboard-kicker">Scoreboard</div>
+              <div className="scoreboard-title">Midnight Fuel Gauge</div>
+              <div className="scoreboard-sub">Track every chapter and drill.</div>
+            </div>
+            <div className="fuel-gauge" role="progressbar" aria-valuenow={progressSnapshot.completed} aria-valuemin={0} aria-valuemax={progressSnapshot.total}>
+              <div className="fuel-gauge-track">
+                <div
+                  className="fuel-gauge-fill"
+                  style={{ width: `${progressPercent}%` }}
+                />
+              </div>
+              <div className="fuel-gauge-stats">
+                <span className="fuel-gauge-count">
+                  {progressSnapshot.completed}/{progressSnapshot.total}
+                </span>
+                <span className="fuel-gauge-label">Chapters Cleared</span>
+                <span className="fuel-gauge-percent">{progressPercent}%</span>
+              </div>
+            </div>
+          </div>
           <div className="content-hero">
             <div className="content-hero-copy">
               <span className="content-pill seal-badge">

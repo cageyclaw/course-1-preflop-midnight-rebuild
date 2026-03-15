@@ -793,7 +793,7 @@ function QuestionSet({
       score,
       total: data.questions.length,
       submitted: isFinal,
-      completed: progressType === 'quiz' ? isFinal : undefined,
+      completed: progressType === 'quiz' ? isFinal : (passThreshold ? passed : undefined),
     })
   }, [
     hydrated,
